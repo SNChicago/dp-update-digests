@@ -1,37 +1,37 @@
 {
   "reaper_core": {
     "state": "v7.78 (2026-07-18); this build touches ARA extensively (item-gain handling, multichannel take FX loading, save/copy/move stability, head/tail time support, channel-count dependency removal) plus API perf work on PlayTrackPreview/StopTrackPreview and midi_reinit() thread-safety.",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "spectralayers13": {
     "state": "13.0.10 (matches sources.yml baseline). Fixes: DePlosive threshold, Unmix Two Voices/Voice DeCrosstalk artifacts >4kHz, Ambience Match preset save, ProTools ARA/AudioSuite Bridge stability on Windows.",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "superpowers": {
     "state": "v6.1.1, released 2026-07-02T21:58:30Z (matches sources.yml baseline). Latest release: Codex SessionStart hook re-registration fix + packaging script, no methodology changes.",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "suno": {
     "state": "Latest model: v5.5 (Voices, Custom Models, My Taste - Mar 26, 2026), still current, no newer model announced. Newest release-notes entry: iMessage Keyboard Integration (Jul 15, 2026). Newest blog post: 'sad alex on songwriting, short-form, and creative autonomy' (Jul 14, 2026); pinned headline: Series D, $400M+ at $5.4B valuation (Jun 3, 2026).",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "inseglet": {
     "state": "Windows status unchanged from baseline: compiles in CI only, NOT load-verified in a real REAPER, no tagged release. README: 'Phases 1-8 are complete and live-verified in REAPER on macOS... CI builds the macOS/Windows/Linux matrix on every push. v1 targets macOS first; Windows and Linux follow once load-verified in a real REAPER (both already compile in CI).'",
     "etag": "e2de91c9039928fab856c26093e5d6445c34a4a4c366edef908e4d42fbd03397",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "mcp_spec": {
     "state": "2026-07-28 spec revision is still at Release Candidate stage (per Jun 29, 2026 'Beta SDKs for the 2026-07-28 MCP Spec Release Candidate' post) - not yet finalized. RC removes the initialize handshake and protocol-level session, adds Multi Round-Trip Requests (MRTR). Also: Enterprise-Managed Authorization (EMA) extension went stable (Jun 18, 2026).",
     "etag": "6a4d52ec-3a27",
     "last_modified": "Tue, 07 Jul 2026 19:26:36 GMT",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "letta_blog": {
     "state": "Newest post: 'Introducing Mods: Enabling Agents to Self-Improve through Harness-Level Adaptation' (Jun 2026) - an agent-friendly way to extend/adapt the Letta Code harness. Prior: 'Introducing the Letta Code App' and 'Why Memory Isn't a Plugin' (both Apr 2026). No archival-memory/passages/blocks API changes or pricing changes noted.",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   },
   "letta_python": {
     "state": "v1.12.1 (2026-06-02): adds generated SDK support for environment endpoints. Prior v1.12.0 (2026-05-23) and v1.11.0 (2026-05-14, cap v1 limit query params, moonshot/kimi BYOK providers). No renamed/removed routes or auth/rate-limit changes noted.",
-    "checked_at": "2026-07-19T04:11:00Z"
+    "checked_at": "2026-07-19T04:24:22Z"
   }
 }
