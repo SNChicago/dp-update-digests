@@ -1,0 +1,112 @@
+# dp-update-digests — curated source registry
+#
+# Edit THIS file to add or remove sources. The Mon/Fri Routine reads it,
+# fetches each source, and reports its CURRENT state in the digest — every run,
+# whether or not anything changed. This is read-and-report, NOT change-detection
+# (see README: a change-monitor is blind to what's already true).
+#
+# Per-source fields:
+#   id           stable key -> state.json. Don't rename casually.
+#   name         human label
+#   vendor       who ships it
+#   urls         one or more URLs to read
+#   fetch        web (free, default) | firecrawl (gated backup only)
+#   goal         what state to report + what counts as signal vs noise
+#   x_handle     (suno only) pending confirmation
+#   was_monitor  (optional) Firecrawl monitor id this replaces -> retire AFTER test
+
+meta:
+  timezone: America/Chicago
+  cadence: "Mon & Fri 07:00 CT"
+  retention_days: 60           # repo history keeps digests permanently; this is the floor
+  fetch_default: web           # free WebFetch/curl; Firecrawl is a per-source backup for gated pages
+  network_allowlist:           # exact hosts to add to the Routine env (Custom = Trusted + these). Lean, not wildcard.
+    - www.reaper.fm
+    - www.steinberg.net
+    - suno.com
+    - www.letta.com
+    # github.com, raw.githubusercontent.com, *.modelcontextprotocol.io are already on the Trusted defaults.
+
+sources:
+  - id: reaper_core
+    name: REAPER (changelog)
+    vendor: Cockos
+    urls: [https://www.reaper.fm/whatsnew.txt]
+    fetch: web
+    goal: >
+      Report the current REAPER version + date. Flag changes touching the DP pipeline floors:
+      ReaScript FX param read/write (TrackFX_Get/SetParam, GetFormattedParamValue, GetSetObjectState),
+      render, ARA, VST hosting, loudness/metering, send/routing API. Ignore pure UI/theme/MIDI-editor polish.
+
+  - id: spectralayers13
+    name: SpectraLayers 13 Pro
+    vendor: Steinberg
+    urls: [https://www.steinberg.net/spectralayers/release-notes/13/]
+    fetch: web
+    goal: >
+      Report the current version (baseline 13.0.10). Flag fixes/features touching unmix/separation,
+      multichannel, ARA, or the module chains DP uses. Ignore marketing.
+
+  - id: superpowers
+    name: obra/superpowers
+    vendor: obra (Jesse Vincent)
+    urls: [https://github.com/obra/superpowers/releases.atom]
+    fetch: web
+    goal: >
+      Report the current latest release (baseline v6.1.1, 2026-07-02). Flag methodology/skill changes
+      worth adopting. Ignore docs-only tweaks.
+
+  - id: suno
+    name: Suno
+    vendor: Suno
+    urls:
+      - https://suno.com/release-notes
+      - https://suno.com/blog
+    x_handle: "CONFIRM"          # @suno (per site meta) | @sunomusic | @suno_ai_ — Walter to set; then add api.fxtwitter.com to allowlist
+    fetch: web
+    goal: >
+      Report the current model/version and newest product/feature updates. Flag a new model, a
+      developer API, or Studio/stem changes relevant to the DP pipeline. Ignore community reposts.
+
+  - id: inseglet
+    name: inseglet (REAPER MCP / immersive)
+    vendor: inseglet-audio (James Livingston)
+    urls: [https://raw.githubusercontent.com/inseglet-audio/inseglet/HEAD/README.md]
+    fetch: web
+    goal: >
+      Report the CURRENT Windows status every run — one of: "compiles in CI only" /
+      "load-verified in a real REAPER" / "released/tagged". Baseline (2026-07-19): compiles in CI,
+      NOT load-verified, no tagged release, macOS-first. Flag the moment it moves past "compiles in CI".
+    was_monitor: 019f59eb-1a6d-7400-bd63-7922eb585697
+
+  - id: mcp_spec
+    name: MCP spec blog
+    vendor: Model Context Protocol
+    urls: [https://blog.modelcontextprotocol.io]
+    fetch: web
+    goal: >
+      Report the current spec version. Flag: sunset of the initialize handshake / session support;
+      clients forced to the stateless 2026-07-28 revision; roots/sampling/logging end-of-support;
+      a new finalized spec version. Ignore SDK betas, governance.
+    was_monitor: 019f39b7-07aa-772b-9f9e-2b3747720127
+
+  - id: letta_blog
+    name: Letta blog
+    vendor: Letta
+    urls: [https://www.letta.com/blog]
+    fetch: web
+    goal: >
+      Report the newest posts. Flag: API changes/versioning, archival-memory/passages/blocks changes,
+      API-surface deprecations, API-plan pricing, new first-party MCP capability. Ignore Letta Code posts.
+    was_monitor: 019f39b6-ed06-7588-ab06-416d9f0692a1
+
+  - id: letta_python
+    name: letta-python releases
+    vendor: Letta
+    urls: [https://github.com/letta-ai/letta-python/releases.atom]
+    fetch: web
+    goal: >
+      Report the current SDK version. Flag notes mentioning REST endpoint / request-response shape
+      changes (passages, archival-memory, blocks, core-memory), renamed/removed routes, auth,
+      rate-limit, pagination, or deprecations. Ignore unrelated endpoints and internal bugfixes.
+    was_monitor: 019f39b6-d3bd-70c1-82f4-f2b0c3d9996b
