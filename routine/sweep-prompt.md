@@ -35,6 +35,10 @@ blind to what's already true at baseline; this is a read-and-report digest by de
 
 4. Write the digest to `digests/YYYY-MM-DD-<mon|fri>.md`. Commit and push (message
    "digest: YYYY-MM-DD <mon|fri>"), and commit the updated `state.json` in the same push.
+   If this environment opens a pull request instead of pushing to `main` directly, mark the PR
+   ready and merge it (squash) yourself before finishing — the digest MUST land on `main`, since
+   readers pull `raw.githubusercontent.com/.../main/digests/`. A digest stranded in an open PR
+   is a failed run.
 
 ## Rules
 - Free fetch is the default. Firecrawl is a per-source fallback ONLY (gated/blocked). This keeps credit

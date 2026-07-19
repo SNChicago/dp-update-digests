@@ -51,7 +51,7 @@ sources:
     name: obra/superpowers
     vendor: obra (Jesse Vincent)
     urls: [https://github.com/obra/superpowers/releases.atom]
-    fetch: web
+    fetch: firecrawl   # test-fire 2026-07-19: routine env's GitHub access is session-repo-scoped; plain fetch of other repos 403s
     goal: >
       Report the current latest release (baseline v6.1.1, 2026-07-02). Flag methodology/skill changes
       worth adopting. Ignore docs-only tweaks.
@@ -104,7 +104,7 @@ sources:
     name: letta-python releases
     vendor: Letta
     urls: [https://github.com/letta-ai/letta-python/releases.atom]
-    fetch: web
+    fetch: firecrawl   # test-fire 2026-07-19: same GitHub session-repo-scoping block as superpowers
     goal: >
       Report the current SDK version. Flag notes mentioning REST endpoint / request-response shape
       changes (passages, archival-memory, blocks, core-memory), renamed/removed routes, auth,
